@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var parkraumSchema = mongoose.Schema({
+var parkingPlaceSchema = mongoose.Schema({
   type: {
     type: String
   },
@@ -207,47 +207,34 @@ var parkraumSchema = mongoose.Schema({
   }
 });
 
-var Parkraum = mongoose.model('parkraum', parkraumSchema);
-module.exports = Parkraum;
+var ParkingPlace = mongoose.model('parkraum', parkingPlaceSchema);
+module.exports = ParkingPlace;
 
 module.exports.getParkingPlaces = function(options, callback, limit){
   if(options.parkraumBahnhofName !== undefined) {
     var r = new RegExp(options.parkraumBahnhofName, 'i');
     options.parkraumBahnhofName = {$regex: r};
   }
-  
-  Parkraum.find(options).limit(limit).exec(callback);
+
+  ParkingPlace.find(options).limit(limit).exec(callback);
 }
 
 module.exports.getParkingPlace = function(parkraumId, callback){
-  Parkraum.find({parkraumId: parkraumId}, callback).limit(1);
+  ParkingPlace.find({parkraumId: parkraumId}, callback).limit(1);
   // Parkraum.find({parkraumKennung: 'P2'}, callback).limit(limit);
-}
-
-module.exports.getAllParkingPlaces = function(callback, limit){
-  Parkraum.find({}, callback).limit(limit);
-  // Parkraum.find({parkraumKennung: 'P2'}, callback).limit(limit);
-}
-
-module.exports.getParkraumeIdsInTab = function(IdsTab, callback, limit){
-  Parkraum.find({'parkraumId': {$in: IdsTab}}, callback).limit(limit);
-}
-
-module.exports.getParkraumeAdvancedSearch = function(dataObj, callback, limit){
-  Parkraum.find(dataObj, callback).limit(limit);
 }
 
 module.exports.updateOccupancy = function(parkraumId, occupancy){
-  Parkraum.findOne({ parkraumId: parkraumId }, function (err, parkraum){
-    parkraum.occupancy = occupancy;
-    parkraum.save();
+  ParkingPlace.findOne({ parkraumId: parkraumId }, function (err, place){
+    place.occupancy = occupancy;
+    place.save();
   });
 }
 
-module.exports.createParkraum = function(parkraum, callback){
-  Parkraum.create(parkraum, callback);
+module.exports.createPlace = function(place, callback){
+  ParkingPlace.create(place, callback);
 }
 
 module.exports.emptyCollection = function(callback){
-  Parkraum.collection.remove(callback);
+  ParkingPlace.collection.remove(callback);
 }

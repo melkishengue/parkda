@@ -4,7 +4,8 @@
   "description": "DB Bahn Parkplatz server app",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node populatedb.js"
   },
   "keywords": [
     "DBBahn",
@@ -14,6 +15,7 @@
   "author": "Melchisedek Hengue Touomo",
   "license": "MIT",
   "dependencies": {
+    "ascii-progress": "^1.0.5",
     "async": "^2.0.1",
     "body-parser": "^1.15.2",
     "bunyan": "^1.8.1",
@@ -22,7 +24,6 @@
     "dotenv": "^4.0.0",
     "eslint": "^4.5.0",
     "express": "^4.14.0",
-    "express-handlebars": "^3.0.0",
     "geolib": "^2.0.21",
     "moment": "^2.15.0",
     "moment-range": "^2.2.0",
@@ -34,7 +35,5 @@
     "sleep": "^4.0.0",
     "underscore": "^1.8.3",
     "utf8": "^2.1.1",
-    "winston": "^2.2.0",
-    "winston-color": "^1.0.0"
   }
 }
