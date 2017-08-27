@@ -356,7 +356,7 @@ $(document).ready(function(){
 
   function laodCityNameFromCoordinates(position){
     $.ajax({type: "GET",
-      url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true',
+      url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true',
       dataType: "json",
       success: function(msg){
         $('#advanced-search-form-submit-city').val(msg.results[1].address_components[1].long_name);
