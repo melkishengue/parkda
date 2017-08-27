@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Park Da!</title>
+		<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!-- Modified version of bootstrap -->
+		<link href="../css/bootstrap2.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="../css/styles.css" rel="stylesheet">
+		<link href="../css/tingle.css" rel="stylesheet">
+		<link rel="icon" type="image/png" href="../images/letter_p.png" />
+	</head>
+	<body>
+<!-- begin template -->
+<div class="navbar navbar-custom navbar-fixed-top">
+ <div class="navbar-header"><a class="navbar-brand" href="#"><!--<img src="../images/icon4.png" alt="" id="logo-image"/>--> Park Da!</a>
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" id="navbar-toggle-id">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <form class="navbar-form" nSubmit="return interceptsSubmit();">
+        <div class="form-group" style="display:inline;">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-chevron-down"></span> Optionen</button>
+              <ul class="dropdown-menu">
+                <li><a class="in-der-naehe-suchen"><span class="glyphicon glyphicon-map-marker"></span> In meiner Nähe suchen</a></li>
+                <li><a href="#" class="erweiterte-suche"><span class="glyphicon glyphicon-compressed"></span> Erweiterte Suche</a></li>
+								<li role="presentation" class="divider"></li>
+                <li><a href="#" class="favs-zeigen"><span class="glyphicon glyphicon-star"></span> Meine Favorites</a></li>
+                <li><a href="#" class="ueber-die-app" data-toggle="modal" data-target=".bd-modal-sm"><span class="glyphicon glyphicon-info-sign"></span> Über diese app</a></li>
+              </ul>
+            </div>
+            <input type="text" class="form-control" placeholder="Geben Sie eine Stadt ein bitte..." id="navbar-search-id">
+            <span class="input-group-addon" id="search-submit"><span class="glyphicon glyphicon-search"></span> </span>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+</div>
+
+<div class="modal fade bd-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <b>Diese Anwendung ist eine demo REST Anwendung.</b></br></br>
+				Die hier verwendeten Daten stammen aus der <a target='_blank' href="http://data.deutschebahn.com/dataset/api-parkplatz">DBBahn Parkplätze API</a>.</br></br>
+
+				Github repo: <a target='_blank' href="http://github.com/melkishengue/parkda">http://github.com/melkishengue/parkda</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="map-canvas"></div>
+<div class="container-fluid" id="main">
+  <div class="row">
+  	<div class="col-xs-4" id="left"  style='box-shadow: 0 0 20px rgba(0,0,0,0.3); position:relative;'>
+			<div style='margin-bottom: 5px;padding-top:10px;'>
+					<button type="button" class="btn btn-default favs-zeigen">
+					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> My Favorites
+					</button>
+				<div id='hinweis-advanced-search'></div>
+			</div>
+
+			<div class="panel panel-default" id='advanced-search-container-id'>
+				<div class="panel-heading"><a href="#" class="parkplatz_link">Erweiterte Suche</a><span class="glyphicon glyphicon-remove at-close-position close-panel" aria-hidden="true"></span></div>
+				<form action="" id="advanced-search-form">
+					<div class="form-group">
+				    <label for="advanced-search-form-submit-entfernung" class='bold'>Max. Entfernung(Km):</label>
+						<input type="text" class="form-control" id='advanced-search-form-submit-entfernung' placeholder='Entfernung in km'></input>
+				  </div>
+					<div class="form-group">
+				    <label for="advanced-search-form-submit-city" class='bold'>Von (Stadt)</label><a href='#' id='advanced-search-form-submit-use-user-location'>
+							<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Standort verwenden</a>
+						<input type="text" class="form-control" id='advanced-search-form-submit-city' placeholder="Name einer Stadt"></input>
+				  </div>
+					<div class="form-group">
+				    <label for="advanced-search-form-submit-city-open" class='bold'>Öffnungszeiten:</label>
+						<select class="selectpicker show-menu-arrow" id='advanced-search-form-submit-city-open'>
+							<option value=''>-- Wählen --</option>
+							<option value='24 Stunden, 7 Tage'>24 Stunden, 7 Tage</option>
+							<option value='06:00 - 22:00 Uhr'>06:00 - 22:00 Uhr</option>
+							<option value='04:00 - 22:00 Uhr. Ausfahrt jederzeit möglich.'>04:00 - 22:00 Uhr. Ausfahrt jederzeit möglich.</option>
+							<option value='Mo-Fr: 06:00 - 22:00 Uhr, Sa: 07:00 - 24:00 Uhr, So+F: geschlossen. Ausfahrt mit Parkticket jederzeit möglich.'>Mo-Fr: 06:00 - 22:00 Uhr, Sa: 07:00 - 24:00 Uhr, So+F: geschlossen. Ausfahrt mit Parkticket jederzeit möglich.</option>
+						</select>
+				  </div>
+					<div class="form-group">
+				    <label for="advanced-search-form-submit-city-state" class='bold'>Bundesland:</label>
+						<select class="selectpicker show-menu-arrow" id='advanced-search-form-submit-city-state' ultiple ata-actions-box="true" noneSelectedText='Keine Auswahl' selectAllText='Alle auswählen'>
+							<option value=''>-- Wählen --</option>
+							<option value='Baden-Württemberg'>Baden-Württemberg</option>
+							<option value='Bayern'>Bayern</option>
+							<option value='Brandenburg'>Brandenburg</option>
+							<option value='Bremen'>Bremen</option>
+							<option value='Berlin'>Berlin</option>
+							<option value='Hamburg'>Hamburg</option>
+							<option value='Hessen'>Hessen</option>
+							<option value='Niedersachsen'>Niedersachsen</option>
+							<option value='Nordrhein-Westfalen'>Nordrhein-Westfalen</option>
+							<option value='Rheinland-Pfalz'>Rheinland-Pfalz</option>
+							<option value='Saarland'>Saarland</option>
+							<option value='Sachsen'>Sachsen</option>
+							<option value='Sachsen-Anhalt'>Sachsen-Anhalt</option>
+							<option value='Schleswig-Holstein'>Schleswig-Holstein</option>
+							<option value='Thüringen'>Thüringen</option>
+							<option value='Mecklenburg-Vorpommern'>Mecklenburg-Vorpommern</option>
+						</select>
+				  </div>
+					<div class="form-group">
+				    <label for="advanced-search-form-submit-city-betreiber" class='bold'>Betreiber:</label>
+						<select class="selectpicker show-menu-arrow" id='advanced-search-form-submit-city-betreiber'>
+							<option value=''>-- Wählen --</option>
+							<option  value='PRBL - Parkraumbewirtschaftung Linne'>PRBL - Parkraumbewirtschaftung Linne</option>
+							<option value='Contipark Parkgaragen GmbH (www.contipark.de)'>Contipark Parkgaragen GmbH (www.contipark.de)</option>
+						</select>
+				  </div>
+					<div class="form-group">
+				    <label for="advanced-search-form-submit-city-isdbbahn" class='bold'>Von DBBahn:</label>
+						<select class="selectpicker show-menu-arrow" id='advanced-search-form-submit-city-isdbbahn'>
+							<option value=''>-- Wählen --</option>
+							<option value='1'>Ja</option>
+							<option value='0'>Nein</option>
+						</select>
+				  </div>
+					<div class="form-group">
+				    <label for="advanced-search-form-submit-city-parkplatztype" class='bold'>ParkplatzArt:</label>
+						<select class="selectpicker show-menu-arrow" id='advanced-search-form-submit-city-parkplatztype'>
+							<option value=''>-- Wählen --</option>
+							<option value='Parkplatz'>Parkplatz</option>
+							<option value='Parkdeck'>Parkdeck</option>
+							<option value='Parkhaus'>Parkhaus</option>
+							<option value='Tiefgarage'>Tiefgarage</option>
+						</select>
+				  </div>
+					<div class="form-group">
+				    <label for="advanced-search-form-submit-city-technik" class='bold'>ParkraumTechnik:</label>
+						<select class="selectpicker show-menu-arrow"  class='float-left' id='advanced-search-form-submit-city-technik'>
+							<option value=''>-- Wählen --</option>
+							<option value='keine'>Keine</option>
+							<option value='Parkscheinautomat'>Parkscheinautomat</option>
+							<option value='Schrankenanlage'>Schrankenanlage</option>
+						</select>
+				  </div>
+					<div class="form-group">
+				    <button type="submit" class="btn" id='advanced-search-form-submit' >Suchen</button>
+				  </div>
+				</form>
+			</div>
+
+      <div id="results-container"></div>
+
+    </div>
+    <div class="col-xs-4"><!--For the map--></div>
+
+  </div>
+</div>
+
+<div id="reshow-results">
+	<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+</div>
+
+	<!-- script references -->
+		<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB8tku-w9IJ9ahCnsENYqQcAPbDvkzaqxA&sensor=false&extension=.js&output=embed"></script>
+		<script src="../js/ParkplatzMap.class.js"></script>
+		<script src="../js/tingle.min.js"></script>
+		<script src="../bower_components/underscore/underscore-min.js"></script>
+		<script src="http://code.highcharts.com/highcharts.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+		<script src="../js/SimpleCookies.class.js"></script>
+		<script src="../js/index.js"></script>
+	</body>
+</html>

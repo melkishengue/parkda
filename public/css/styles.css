@@ -1,0 +1,309 @@
+/*
+A custom Bootstrap 3.1 theme from http://bootply.com\
+
+This CSS code should follow the 'bootstrap.css'
+in your HTML file.
+
+license: MIT
+author: bootply.com
+*/
+
+
+html,body{
+  	height:100%;
+}
+
+body{
+  	padding-top:50px; /*padding for navbar*/
+    overflow:hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.silver{
+  color: silver;
+}
+
+.add-to-fav{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    color:silver;
+}
+
+.belegungs-chart{
+  height: 200px;
+  width: 100%;
+  display: none;
+}
+
+.in-der-naehe-suchen, .erweiterte-suche{
+  cursor: pointer;
+  color: #123459;
+}
+
+#hinweis-advanced-search{
+  display:inline-block;
+  font-size:11px !important;
+  vertical-align:-50%;
+  line-height:-5px;
+  color: gray;
+  margin-left:10px;
+}
+
+#mobile-form-search-container{
+  isplay: none;
+}
+
+#advanced-search-container-id form{
+  padding: 15px;
+  font-size: 13px;
+}
+
+#advanced-search-container-id form .btn-group{
+  width: 100% !important;
+}
+
+#mobile-form-search-container select{
+  width: 100% !important;
+  font-size: 15px;
+  height: 30px !important;
+  line-height: 1.3;
+}
+
+#advanced-search-container-id{
+  display: none;
+}
+
+.panel-default>.panel-heading {
+    color: #333;
+}
+
+.panel-default>.panel-heading a {
+    font-size: 14px;
+}
+
+.panel-default{
+  position: relative !important;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.navbar-custom .icon-bar {
+	background-color:#fff;
+}
+
+.navbar-custom {
+	ackground-color: #168ccc;
+	ackground-color: #ff4500;
+    olor:#fff;
+
+    background-color: #f5f5f5;
+    color: black;
+}
+
+.navbar-custom li>a:hover,.navbar-custom li>a:focus {
+	background-color:#49bfff;
+}
+
+.navbar-custom a{
+    olor:#fefefe;
+    color:red;
+}
+
+#navbar-toggle-id span{
+  background-color: red !important;
+}
+
+.navbar-custom .form-control:focus {
+	border-color: #49bfff;
+	outline: 0;
+	-webkit-box-shadow: inset 0 0 0;
+	box-shadow: inset 0 0 0;
+}
+
+#main, #main>.row {
+	height:100%;
+}
+
+#main>.row {
+    overflow-y:scroll;
+}
+
+#left {
+	eight:100%;
+}
+
+#logo-image{
+  width: 20%;
+}
+.panel-heading a{
+  color: #ff4500 !important;
+  font-size: 16px;
+}
+.alert-danger-db{
+  background-color: orangered;
+  color: white;
+}
+.dropdown-menu li a:hover{
+  background-color: orangered !important;
+  color: white !important;
+  cursor: pointer;
+}
+.loading{
+  opacity: 0.3;
+}
+.map-info-window{
+ background:#333;
+ border-radius:4px;
+ box-shadow:8px 8px 16px #222;
+ color:#fff;
+ max-width:200px;
+ max-height:300px;
+ text-align:center;
+ padding:5px 20px 10px;
+ overflow:hidden;
+ position:absolute;
+ text-transform:uppercase;
+}
+.map-info-window .map-info-close{
+ float:right;
+ cursor:pointer;
+ margin-right:-5px;
+ margin-left:5px;
+}
+
+.map-info-window h5{
+ font-weight:bold;
+}
+.map-info-window p{
+ color:#939393;
+}
+h5, .h5 {
+  font-size: 14px;
+  color: #00A6F9;
+  color: orangered;
+}
+#content{
+font-family: 'DBSans';
+font-size: 13px;
+}
+.small{
+font-size: 13px;
+}
+.bold{
+font-family: 'DBSansBold';
+olor: #696969;
+}
+label{
+font-weight: normal !important;
+}
+ul.links-ul {list-style-type: none; ont-weight: bold;}
+.orangered{
+olor: orangered;
+}
+.disabled-div{
+opacity: 0.6;
+border: 2px solid orangered !important;
+}
+.error-overlay-container{
+color:white;
+position:absolute;
+z-index:5;
+}
+.error-overlay{
+background:#942911;
+position: relative;
+top:30px;
+left: -10px;
+width : 150px;
+height : 30px;
+}
+.table-preise{
+display: none;
+}
+.panel-default img{
+width: 6%;
+}
+
+.at-close-position{
+position: absolute;
+right: 10px;
+top: 10px;
+color:silver;
+font-size: 17px;
+cursor: pointer;
+}
+.favorited{
+color:orangered;
+}
+.unfavorited{
+color:silver;
+}
+.loader-img{
+width: 5% !important;
+margin-left: 3px;
+}
+
+@media (max-width: 480px) {
+  #map-canvas {
+  	width:100%;
+      height:calc(100% - 0);
+      position:absolute;
+      right:0px;
+      top:50px;
+      bottom:0;
+      overflow:hidden;
+  }
+  .col-xs-4{
+    width: 100%;
+    position: relative;
+    display: none;
+  }
+  #mobile-results{
+    display: block;
+    display: none;
+    background-color: white;
+    width: 100%;
+    height: : auto;
+    position: absolute;
+    overflow: scroll;
+  }
+  #main-mobile{
+    position: absolute;
+  }
+  #reshow-results{
+    position: absolute;
+    top:50%;
+    font-size: 20px;
+    background-color: red;
+    color: white;
+    padding-top: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+    cursor: pointer;
+    display: none;
+  }
+}
+
+@media (min-width: 480px) {
+  #map-canvas {
+  	width:65.6666%;
+      height:calc(100% - 0);
+      position:absolute;
+      right:1px;
+      top:50px;
+      bottom:0;
+      overflow:hidden;
+  }
+  #mobile-results{
+    isplay: none;
+  }
+  #reshow-results{
+    display: none;
+  }
+  .col-xs-4 {
+    width: 34.33333333% !important;
+  }
+}
