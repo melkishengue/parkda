@@ -18,11 +18,12 @@ app.use(morgan('tiny'));
 var options = {
   db: { native_parser: true },
   server: { poolSize: 5 },
-  replset: { rs_name: 'myReplicaSetName' },
-  user: config.DB.USER,
-  pass: config.DB.PASSWORD
+  replset: { rs_name: 'myReplicaSetName' }
 }
-mongoose.connect("mongodb://localhost/" + config.DB.DBNAME, options);
+
+const url = "mongodb://" + config.DB.USER + ":" + config.DB.PASSWORD + "@" + config.DB.HOST  + ":" + config.DB.PORT + "/" + config.DB.DBNAME;
+
+mongoose.connect(url, options);
 
 // Loading our models
 // Belegung = require('./model/belegung.js');
