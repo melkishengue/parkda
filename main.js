@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require('mongoose');
 
 var morgan = require('morgan');
+require('dotenv').config();
 
 //load our confoguration file
 config = require('./config.js');
@@ -19,9 +20,14 @@ var options = {
   db: { native_parser: true },
   server: { poolSize: 5 },
   replset: { rs_name: 'myReplicaSetName' }
-}
+};
 
-const url = "mongodb://" + config.DB.USER + ":" + config.DB.PASSWORD + "@" + config.DB.HOST  + ":" + config.DB.PORT + "/" + config.DB.DBNAME;
+const url = "mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_HOST  + ":" + process.env.DB_PORT + "/" + process.env.DB_NAME;
+console.log('url: ', url);
+
+mongoose.connection.on('error', function (err) {
+  console.log(err);
+});
 
 mongoose.connect(url, options);
 
@@ -50,5 +56,5 @@ app.get("/", function(req, res){
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.listen(config.SERVER_PORT);
-console.log('The app is running on port ' + config.SERVER_PORT + '. Navigate to localhost: ' + config.SERVER_PORT + '  to see the magic ;)');
+app.listen(process.env.PORT);
+console.log('The app is running on port ' + process.env.PORT + '. Navigate to localhost: ' + process.env.PORT + '  to see the magic ;)');

@@ -33,7 +33,6 @@ $(document).ready(function(){
   };
   // Not found html message
   var HTML_RESULTS_NOT_FOUND = '<div class="alert alert-danger-db">Keine Treffer gefunden.<br/>Dass es keine Treffer gibt liegt daran, dass nicht alle Bahnhöfe Parkplätze anbieten.</br></br>Hinweis: Benutze die <a class="in-der-naehe-suchen">Suche in Deiner Nähe</a> um in der Nähe liegende Parkplätze zu finden, oder die <a class="erweiterte-suche">erweiterte Suche</a> um Parkplätze in der Nähe eines bestimmten Ort zu finden.</div>';
-  console.log(icons['parkplatz']);
 
   var sm = new SimpleCookies();
 
