@@ -23,7 +23,6 @@ var options = {
 };
 
 const url = "mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@" + process.env.DB_HOST  + ":" + process.env.DB_PORT + "/" + process.env.DB_NAME;
-console.log('url: ', url);
 
 mongoose.connection.on('error', function (err) {
   console.log(err);
