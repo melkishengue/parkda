@@ -1,5 +1,5 @@
 require('dotenv').config();
-var ParkingPlaces = require(__dirname + '/model/parkingPlaces.js');
+var ParkingPlaces = require(__dirname + '/models/parkingPlaces.js');
 var Client = require('node-rest-client').Client;
 var client = new Client();
 var config = require(__dirname + '/config.js');

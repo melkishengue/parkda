@@ -31,8 +31,8 @@ mongoose.connection.on('error', function (err) {
 mongoose.connect(url, options);
 
 // Loading our models
-// Belegung = require('./model/belegung.js');
-// BelegungsPrognose = require('./model/belegungsprognose.js');
+// Belegung = require('./models/belegung.js');
+// BelegungsPrognose = require('./models/belegungsprognose.js');
 
 var parkingPlaces = require(__dirname + '/routes/parkingPlaces');
 

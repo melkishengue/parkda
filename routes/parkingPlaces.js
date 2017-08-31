@@ -9,7 +9,7 @@ var geolib = require('geolib');
 var config = require(__dirname + '/../config.js');
 
 // model
-ParkingPlaceModel = require(__dirname + '/../model/parkingPlaces.js');
+ParkingPlaceModel = require(__dirname + '/../models/parkingPlaces.js');
 
 // sort a collection of objects on a specified numeric field
 Array.prototype.sortOn = function(key){
